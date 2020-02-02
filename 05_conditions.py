@@ -44,12 +44,13 @@ print(grade) # B
 
 # task1
 
-year = 2020
-if year%4 == 0:
+year = 2100
+#if (year%4 == 0 and year%100 != 0) or (year%4 == 0 and year%100 == 0 and year%400 == 0):
+if year%4 == 0 and (year%100 != 0 or (year%100 == 0 and year%400 == 0)):
     year_type = 'leap'
 else:
     year_type = 'normal'
-print('This is %s year' % year_type)
+print('{} is {} year'.format(year, year_type))
 
 # task2
 
