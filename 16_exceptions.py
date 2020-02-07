@@ -100,3 +100,67 @@ else: # it will be executed if no exceptions occured
 finally:
     print('at last')
 
+# throw exception
+# exceptions are subclass of BaseException class
+
+#raise BaseException('Program failed')
+
+# exceptions 
+
+#def log(msg):
+#    raise SystemError("Logging not up")
+#
+#def divide_work(x, y):
+#    try:
+#        return x/y
+#    except ZeroDivisionError as ex:
+#        log("System is down")
+#
+#divide_work(5, 0)
+
+# supressing exceptions
+
+def log(msg):
+    print(msg)
+
+def divide_work(x, y):
+    try:
+        return x/y
+    except ZeroDivisionError as ex:
+        log("System is down")
+        #raise ArithmeticError() from None # this will supress ZeroDivision error
+        raise ArithmeticError() from ex # both Zero and Arithmetics errors will be catched
+divide_work(5, 0)
+
+# task1
+
+def calc(x,y,operand):
+    try:
+        if operand == '/':
+            print(x/y)
+        if operand == '*':
+            print(x*y)
+        if operand == '-':
+            print(x-y)   
+        if operand == '+':
+            print(x+y)
+    except Exception as e:
+        print('Something failed')
+    
+calc(5,1.0,'/')
+
+# task2
+
+import sys
+
+def file_names(filename):
+    try:
+        fin = open(filename)
+        fin.close()
+    except FileExistsError:
+        print('File doesn\'t exists')
+    except FileNotFoundError:
+        print('File not found')
+
+file_names('/tmp/bbb.txt')
+
