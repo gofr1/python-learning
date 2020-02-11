@@ -49,7 +49,7 @@ my_name[-1:]
 # task2
 
 def find_extension (file_name):
-    return filename[filename.rfind('.')+1:]
+    return file_name[file_name.rfind('.')+1:]
 
 filename = 'readme.txt'
 find_extension(filename)
