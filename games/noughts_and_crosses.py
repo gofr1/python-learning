@@ -1,4 +1,6 @@
-# tic-tak-toe game
+# noughts and crosses game
+#
+# with square field from 3 to N
 
 from math import pow
 
@@ -39,21 +41,20 @@ def board():
     """Creates a game board"""
     board = []
     for square in range(NUM_SQUARES):
-        board.append(EMPTY)
+        board.append()
+        board[square] = EMPTY
     return board
 
 def display_board(board, help=None):
     '''Display a current game board'''
-    
     print('\n')
     for i in range(0, NUM_SQUARES, ROWS_NUMBER):
-        row = ' '
-        line = '-----'*ROWS_NUMBER
+        row = ''
+        line = '-' * NUM_SQUARES
         for n in range(ROWS_NUMBER):
             row = row + '{: ^4}'.format(board[i+n] if help == None else str(i+n)) + '|'
         print(row[:-1])
-        print(line)
-
+        print(line[:-1])
 
 def legal_moves(board):
     """Creates a list of legal moves for current board"""
@@ -69,6 +70,24 @@ def winner(board):
     # TODO: make it works for any board
     return(ways_to_win)
 
+def human_move(board, human):
+    '''Makes human move based on input'''
+    legal = legal_moves(board)
+    move = None
+    while move not in legal:
+        move = ask_number("Make your move (0-{}):".format(NUM_SQUARES), 0, NUM_SQUARES)
+        if move not in legal:
+            print('\nThat field isn\'t empty, make another move')
+    print('\nOK')
+    return move
+
+def computer_move(board, computer, human):
+    '''Makes computer move'''
+    board = board[:]
+    # TODO this logic needs to be done based on winner function
+    pass
+
 new_board = board()
 winner(new_board)
 display_board(new_board, 0)
+display_board(new_board)
