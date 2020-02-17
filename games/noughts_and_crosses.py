@@ -39,10 +39,10 @@ def who_go_first():
 
 def board():
     """Creates a game board"""
-    board = []
-    for square in range(NUM_SQUARES):
-        board.append()
-        board[square] = EMPTY
+    # board = []
+    # for square in range(NUM_SQUARES):
+    #     board.append(EMPTY)
+    board = [EMPTY] * NUM_SQUARES
     return board
 
 def display_board(board, help=None):
