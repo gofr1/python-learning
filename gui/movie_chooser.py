@@ -1,7 +1,7 @@
-from tkinter import Tk, Frame, Button, Label, Entry, Text, BooleanVar, Checkbutton
+from tkinter import Tk, Frame, Button, Label, Entry, Text, BooleanVar, Checkbutton, END, WORD, W
 
 class Application(Frame):
-    '''GUI app that know secret of longevity'''
+    '''GUI app that allows to choose your favorite genres all-in-ones!'''
     def __init__(self, master):
         '''Frame initiation'''
         super(Application, self).__init__(master)
