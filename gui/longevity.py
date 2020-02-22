@@ -1,4 +1,4 @@
-from tkinter import Tk, Frame, Button, Label, Entry, Text
+from tkinter import Tk, Frame, Button, Label, Entry, Text, W, WORD, END
 
 class Application(Frame):
     '''GUI app that know secret of longevity'''
