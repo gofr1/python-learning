@@ -1,13 +1,13 @@
-#print('hello world!')
+import pyodbc, configparser
 
-import pyodbc
+section_name = 'mssql_local'
+config = configparser.ConfigParser()
+c = config.read("./.env/db.conf")
+db_opts = config.options(section_name)
+details = dict()
 
-details = {
- 'server' : 'localhost',
- 'database' : 'tempdb',
- 'username' : 'SA',
- 'password' : "sl1pKN)T"
- }
+for db_opt in db_opts:
+    details[db_opt] = config.get(section_name, db_opt)
 
 connect_string = 'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};PORT=1433;DATABASE={database};UID={username};PWD={password}'.format(**details)
 
