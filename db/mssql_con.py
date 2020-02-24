@@ -9,7 +9,7 @@ details = dict()
 for db_opt in db_opts:
     details[db_opt] = config.get(section_name, db_opt)
 
-connect_string = 'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};PORT=1433;DATABASE={database};UID={username};PWD={password}'.format(**details)
+connect_string = 'DRIVER={driver};SERVER={server};PORT=1433;DATABASE={database};UID={username};PWD={password}'.format(**details)
 
 try:
     connection = pyodbc.connect(connect_string)
@@ -23,3 +23,4 @@ else:
     rows = cursor.fetchall()
     for row in rows:
         print(row.ver)
+    connection.close()
