@@ -29,11 +29,11 @@ else:
     record = cursor.fetchone()
     print("You are connected to - ", record,"\n")
 
-    cursor.execute('SELECT * FROM "dbo"."dimcurrency" LIMIT 2;')
+    cursor.execute('SELECT * FROM "language";')
     rows = cursor.fetchall()
     for row in rows:
-        print("currencykey = ", row[0])
-        print("currencyalternatekey = ", row[1])
-        print("currencyname = ", row[2])
+        print("languageid = ", row[0])
+        print("name = ", row[1])
+        print("last_updated = ", row[2])
 
     connection.close()
