@@ -1,14 +1,16 @@
 from superwires import games, color
 
+path_to_images = '../../Pictures/img/'
+
 # create a graphic screen 640x480 with 50 fps
 games.init(screen_width = 640, screen_height = 480, fps = 50)
 
 # add background
-wall_image = games.load_image("../../Downloads/wall.jpg", transparent=False)
+wall_image = games.load_image(path_to_images + "wall.jpg", transparent=False)
 games.screen.background = wall_image
 
 # add pizza (sprite)
-pizza_image = games.load_image("../../Downloads/pizza.png")
+pizza_image = games.load_image(path_to_images + "pizza.png")
 pizza = games.Sprite(
         image=pizza_image, 
         # put it in left up corner
