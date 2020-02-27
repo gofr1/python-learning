@@ -30,7 +30,7 @@ class Pan(games.Sprite):
             size = 25,
             color = color.black,
             top=5,
-            right=10
+            right=20
         )
         games.screen.add(self.player_level)
 
@@ -54,7 +54,6 @@ class Pan(games.Sprite):
 
             Chef.level += 1 if f == 0 else 0
             self.player_level.value = Chef.level
-            Chef.speed
     
 class Pizza(games.Sprite):
     '''Falling pizza!'''
