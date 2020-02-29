@@ -67,3 +67,14 @@ def is_anagram(str1, str2):
 
 is_anagram("abc","bcd") # False
 is_anagram("abc","cba") # True
+
+# check IP address
+
+import urllib.request
+import re
+
+url = "http://checkip.dyndns.org"
+request = urllib.request.urlopen(url).read()
+
+the_ip = re.findall(r"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b", request.decode('utf8'))
+print("Your current IP Address is: {}".format(the_ip[0]))
