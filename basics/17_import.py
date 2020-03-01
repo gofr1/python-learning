@@ -34,7 +34,7 @@ other_math.sin(0)
 # that command loads ALL the content of math module in
 # local namespace
 # this must be used carefuly
-from math import *
+from math import asin
 asin(0)
 # 0.0
 
@@ -47,9 +47,6 @@ import tkinter
 import pyodbc
 # - import from local modules
 import blackjack
-
-
-
 
 # task1
 import json
