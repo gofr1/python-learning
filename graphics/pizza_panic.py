@@ -1,5 +1,5 @@
 from superwires import games, color
-from random import randrange
+from random import randrange, uniform, randint
 
 path_to_images = '../../Pictures/img/'
 
@@ -54,6 +54,7 @@ class Pan(games.Sprite):
 
             Chef.level += 1 if f == 0 else 0
             self.player_level.value = Chef.level
+            Pizza.speed = Chef.level
     
 class Pizza(games.Sprite):
     '''Falling pizza!'''
@@ -95,7 +96,7 @@ class Pizza(games.Sprite):
 class Chef(games.Sprite):
     '''The chef that throws pizza'''
     chef_image = games.load_image(path_to_images + "TheChef.png")
-    level = 1
+    level = 0
 
     def __init__(self, y = 115, speed = 2, odds_change = 200):
         '''Initialize Chef'''
@@ -123,7 +124,7 @@ class Chef(games.Sprite):
         else:
             new_pizza = Pizza(x = self.x)
             games.screen.add(new_pizza)
-            self.time_til_drop = int(new_pizza.height * 1.3 /Pizza.speed) - self.level
+            self.time_til_drop = int(new_pizza.height * uniform(1.0, 3.5) /Pizza.speed) 
 
 def main():
     '''Gameplay'''
@@ -141,3 +142,4 @@ def main():
 
 # go!
 main()
+
