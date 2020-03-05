@@ -9,7 +9,7 @@ details = dict()
 for db_opt in db_opts:
     details[db_opt] = config.get(section_name, db_opt)
 
-connect_string = 'DRIVER={driver};SERVER={server};PORT=1433;DATABASE={database};UID={username};PWD={password}'.format(**details)
+connect_string = 'DRIVER={driver};SERVER={server};PORT=1433;DATABASE={database};UID={uid};PWD={pwd}'.format(**details)
 
 try:
     connection = pyodbc.connect(connect_string)
