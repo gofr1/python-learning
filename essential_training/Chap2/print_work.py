@@ -10,10 +10,9 @@ print("Some text %s and %d" % (strX, intX))
 # in python 3
 print("Some text {} and {}".format(strX, intX))
 
-# in python 3.6
+# in python 3.6 fstrings were introduced
 print(f"Some text {strX} and {intX}") # f stands for format
 
 
 x = ('a','b','c')
 print("{}, {}, {}".format(*x))
-

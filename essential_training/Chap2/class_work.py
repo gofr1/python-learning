@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 class Duck: # definition of the class
     # variables inside class are usually called properties
     sound = 'Quaaack!'
