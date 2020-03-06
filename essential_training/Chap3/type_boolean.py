@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-
 # "", 0, None evaluate as False
 
 some_data = ("", 0, None, 'x', 1, True, False)
 
 for data in some_data:
-    evaluates = True if data else False
+    evaluates = True if data else False # here is ternary conditional operator
     print("value '{}' evaluates as {}".format(data, evaluates))
 
 # value '' evaluates as False
