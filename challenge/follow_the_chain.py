@@ -52,7 +52,7 @@ for i in range(start_from, num_tries):
         next_url, num, message_text = url_loop(next_url)
         a = int(num)
     except (ValueError, TypeError):
-        print('Script stoped at i = {}, last_num was {}. We get this message: {}.\n '.format(i, all_nothings[i-1], message_text))
+        print('Script stoped at i = {}, last_num was {}. We got this message: "{}"\n '.format(i, all_nothings[i-1], message_text))
         if message_text == 'Yes. Divide by two and keep going.':
             next_url = linkedlist_url + '?nothing=' + str(int(int(all_nothings[i-1])/2))
             continue
