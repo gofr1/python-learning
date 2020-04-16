@@ -2,7 +2,7 @@
 
 def main():
     # Read from file
-    myFile = open("./standard_libs/scores.txt", "r")
+    myFile = open("scores.txt", "r")
     print("Reading...")
     print(myFile.read(10))
     # seek is a pointer that keeps a track of where we are in the file
