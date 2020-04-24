@@ -33,6 +33,8 @@ def main():
     for n in even_integers_generator(10):
         print(n)
     
+    print()
+
     for n in (n for n in range(10) if n%2 == 0):
         print(n)
     

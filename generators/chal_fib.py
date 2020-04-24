@@ -9,7 +9,7 @@ def fibonacci_gen():
 def main():
     fib = fibonacci_gen()
 
-    for _ in range(10):
+    for _ in range(10): # to override problem use _ instead of letters
         print(next(fib))
 
 if __name__ == '__main__':
