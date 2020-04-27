@@ -11,15 +11,15 @@ def new_log_file(name):
     try:
         logname = name
         f = open(logname, 'w')
-        f.write(f'{get_datetime()} {HEADER} \n')
+        f.write(f'{get_datetime()} {HEADER}\n')
         yield f
     finally:
-        f.write(f'{get_datetime()} {FOOTER} \n')
+        f.write(f'{get_datetime()} {FOOTER}\n')
         print("Logfile created")
         f.close
 
 def get_datetime():
-    return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    return datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
 
 def main():
     with new_log_file('logfile.txt') as file:
