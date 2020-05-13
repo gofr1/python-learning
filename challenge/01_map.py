@@ -1,4 +1,6 @@
 # 1
+# http://www.pythonchallenge.com/pc/def/map.html
+
 def cypher(sentence, step):
     alphabet = list('abcdefghijklmnopqrstuvwxyz')
     new_sentence = ''
@@ -15,3 +17,4 @@ sentence = 'g fmnc wms bgblr rpylqjyrc gr zw fylb. rfyrq ufyr amknsrcpq ypc dmp.
 step = 2
 print(cypher(sentence, step))
 
+print(cypher('map',step))
