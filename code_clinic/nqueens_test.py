@@ -15,9 +15,13 @@ su = x+y
 mi = x-y
 
 for i in range(n):
-    print(i)
     for f in range(n):
-        if fin[i][f][0]+fin[i][f][1] == su or fin[i][f][0]-fin[i][f][1] == mi or fin[i][f][0] == x or fin[i][f][1] == y:
+        xpos = fin[i][f][0]
+        ypos = fin[i][f][1]
+        if (xpos+ypos == su or 
+           xpos-ypos == mi or 
+           xpos == x or 
+           ypos == y):
             fin[i][f] = (9,9)
 
 for i in range(n):
