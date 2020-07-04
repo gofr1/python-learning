@@ -1,4 +1,4 @@
-from tkinter import Tk, Text
+from tkinter import Tk, Text, PhotoImage, Button
 
 root = Tk()
 
@@ -37,3 +37,51 @@ text.config(state='disabled') # now you can't enter text
 
 text.config(state='normal') 
 
+# Tags are used to reference dections of the text
+# 
+# adding tags
+text.tag_add('my_tag', '1.0', '1.0 wordend')
+text.tag_configure('my_tag', background='yellow')
+text.tag_remove('my_tag', '1.1', '1.3')
+
+# to check tag range
+text.tag_ranges('my_tag')
+
+# get all tags
+text.tag_names() # sel - is a selection special tag
+
+# check tags on some area
+text.tag_names('1.0')
+
+# replacing with tags
+text.replace('my_tag.first', 'my_tag.last', 'That')
+
+# delete tag
+text.tag_delete('my_tag')
+
+# Marks
+
+text.mark_names()
+
+# insert special marked can be used to insert text in cursor position
+# place cursor anyway in the text 
+text.insert('insert', '_')
+
+# placing a mark
+text.mark_set('my_mark', 'end')
+
+# where to put text before or behind the mark
+text.mark_gravity('my_mark', 'right')
+
+# to remove a mark
+text.mark_unset('my_mark')
+
+# add picture into text
+image = PhotoImage(file='../../Pictures/img/python_logo.gif')
+text.image_create('insert', image=image)
+
+# or add button
+button = Button(text, text='Click Me!')
+text.window_create('insert', window=button)
+
+root.destroy()
