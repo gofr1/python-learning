@@ -34,3 +34,35 @@ treeview.move('item3', 'item2', '0')
 
 # true delete of an item
 treeview.delete('item3')
+
+# add one more column
+treeview.config(columns=('version'))
+
+# lets amend new column
+treeview.column('version', width=50, anchor='center')
+# and old one referencing it by index
+treeview.column('#0', width=150)
+
+# change heading
+treeview.heading('version', text='Version')
+
+# change values in new column
+treeview.set('python', 'version', '3.8.3')
+
+# add tags to an item in treeview
+treeview.item('python', tags=('software'))
+
+treeview.tag_configure('software', background='red') #not working
+
+# check what item is selected
+def callback(event):
+    print(treeview.selection())
+
+treeview.bind('<<TreeviewSelect>>', callback)
+
+# by default you can select multiple items to change this
+treeview.config(selectmode='browse') # allow to select 1 item at a time
+
+# to add /remove items from selection
+treeview.selection_add('python')
+treeview.selection_remove('python')
