@@ -29,11 +29,11 @@ else:
     record = cursor.fetchone()
     print("You are connected to - ", record,"\n")
 
-    cursor.execute('SELECT * FROM "language";')
-    rows = cursor.fetchall()
-    for row in rows:
-        print("languageid = ", row[0])
-        print("name = ", row[1])
-        print("last_updated = ", row[2])
+    # cursor.execute('SELECT * FROM "language";')
+    # rows = cursor.fetchall()
+    # for row in rows:
+    #     print("languageid = ", row[0], end = ';')
+    #     print("name = ", row[1], end=';')
+    #     print("last_updated = ", row[2])
 
     connection.close()
