@@ -10,3 +10,4 @@
 *.bz2
 *.png
 .pytest_cache
+*.gfx
