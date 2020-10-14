@@ -1,5 +1,4 @@
 #12
-#pip install GFX
 
 from bs4 import BeautifulSoup, SoupStrainer
 import requests
