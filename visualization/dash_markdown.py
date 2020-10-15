@@ -49,14 +49,5 @@ app.layout = html.Div([
     dcc.Input(value='MTL', type='text'),
 ])
 
-
-
-
-
-
-
-
-
-
 if __name__ == '__main__':
     app.run_server()
