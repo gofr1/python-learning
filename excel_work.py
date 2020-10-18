@@ -87,3 +87,39 @@ for rowOfCellObjects in sheet['A1':'C3']:
 #* B3 - Pears
 #* C3 - 14
 
+# create and save Excel document
+wb = openpyxl.Workbook()
+wb.get_sheet_names()
+#* ['Sheet']
+
+sheet = wb.active
+sheet.title
+#* 'Sheet'
+
+sheet.title = 'New sheet name'
+wb.get_sheet_names()
+#* ['New sheet name']
+
+wb.save('example_copy.xlsx')
+
+# create and remove of sheets
+wb.create_sheet(index=0, title='First Sheet')
+#* <Worksheet "First Sheet">
+wb.create_sheet(title='Last Sheet')
+#* <Worksheet "Last Sheet">
+
+wb.get_sheet_names()
+#* ['First Sheet', 'New sheet name', 'Last Sheet']
+
+wb.remove(wb.get_sheet_by_name('Last Sheet'))
+
+wb.get_sheet_names()
+#* ['First Sheet', 'New sheet name']
+
+# writing to cell
+sheet = wb.get_sheet_by_name('First Sheet')
+sheet['A1'] = 'Hello world!'
+sheet['A1'].value
+#* 'Hello world!'
+
+wb.save('example_copy.xlsx')
