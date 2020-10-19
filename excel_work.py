@@ -203,3 +203,25 @@ sheet['A3'].value
 #* '=SUM(A1:A2)'
 
 wb.save('writeFormula.xlsx')
+
+# # create a file with test data
+# import excel_file
+# excel_file.create_file('moving.xlsx')
+
+# inserting/deleting and moving rows, columns and ranges
+wb = openpyxl.load_workbook('moving.xlsx')
+sheet = wb.active
+
+# add 2 rows between rows 6 and 7 
+sheet.insert_rows(7, 2) # delete_rows()
+
+# delete the columns E:H
+sheet.delete_cols(5, 4) # insert_cols()
+
+# moving range of cells
+sheet.move_range("A9:D15", rows=-2) # two rows up
+
+# moving a range of cells with formula update
+sheet.move_range("A1:D12", rows=1, cols=1, translate=True) 
+
+wb.save('moving.xlsx')
