@@ -3,6 +3,7 @@
 
 import openpyxl
 from openpyxl.utils import get_column_letter, column_index_from_string
+from openpyxl.styles import Font
 
 # open file
 wb = openpyxl.load_workbook('example.xlsx')
@@ -123,3 +124,104 @@ sheet['A1'].value
 #* 'Hello world!'
 
 wb.save('example_copy.xlsx')
+
+# setting the font style
+wb = openpyxl.Workbook()
+sheet = wb['Sheet']
+
+fontObj1 = Font(name='Times New Roman', bold=True)
+sheet['A1'].font = fontObj1
+sheet['A1'] = 'Bold Times New Roman'
+
+fontObj2 = Font(size=24, italic=True)
+sheet['B1'].font = fontObj2
+sheet['B1'] = '24 pt Italic'
+
+wb.save('styles.xlsx')
+
+# setting row height and column width
+wb = openpyxl.Workbook()
+sheet = wb.active
+
+sheet['A1'] = 'Tall row'
+sheet['B2'] = 'Wide column'
+
+# the row height can be set to an integer or float value between 0 and 409.
+# the default row height is 12.75
+sheet.row_dimensions[1].height = 50
+
+# the column width can be set to an integer or float value between 0 and 255.
+# the default column width is 8.43 characters. 
+sheet.column_dimensions['B'].width = 30
+
+wb.save('dimensions.xlsx')
+
+# merge cells
+wb = openpyxl.Workbook()
+sheet = wb.active
+
+sheet.merge_cells('A1:D3')
+sheet['A1'] = 'Twelve cells merged together.'
+
+sheet.merge_cells('C5:D5')
+sheet['C5'] = 'Two merged cells.'
+
+wb.save('merged.xlsx')
+
+# unmerge cells
+wb = openpyxl.load_workbook('merged.xlsx')
+sheet = wb.active
+
+sheet.unmerge_cells('A1:D3')
+sheet.unmerge_cells('C5:D5')
+
+wb.save('merged.xlsx')
+
+# freeze panes
+wb = openpyxl.load_workbook('produceSales.xlsx')
+sheet = wb.active
+
+# freeze_panes setting      | Rows and columns frozen
+# sheet.freeze_panes = 'A2' | Row 1
+# sheet.freeze_panes = 'B1' | Column A
+# sheet.freeze_panes = 'C1' | Columns A and B
+# sheet.freeze_panes = 'C2' | Row 1 and columns A and B
+sheet.freeze_panes = 'A2'
+
+wb.save('freezeExample.xlsx')
+
+# formulas
+wb = openpyxl.Workbook()
+sheet = wb.active
+
+sheet['A1'] = 200
+sheet['A2'] = 300
+
+sheet['A3'] = '=SUM(A1:A2)'
+
+sheet['A3'].value
+#* '=SUM(A1:A2)'
+
+wb.save('writeFormula.xlsx')
+
+# # create a file with test data
+# import excel_file
+# excel_file.create_file('moving.xlsx')
+
+# inserting/deleting and moving rows, columns and ranges
+wb = openpyxl.load_workbook('moving.xlsx')
+sheet = wb.active
+
+# add 2 rows between rows 6 and 7 
+sheet.insert_rows(7, 2) # delete_rows()
+
+# delete the columns E:H
+sheet.delete_cols(5, 4) # insert_cols()
+
+# moving range of cells
+sheet.move_range("A9:D15", rows=-2) # two rows up
+
+# moving a range of cells with formula update
+sheet.move_range("A1:D12", rows=1, cols=1, translate=True) 
+
+wb.save('moving.xlsx')
