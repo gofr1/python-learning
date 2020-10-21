@@ -28,3 +28,66 @@ print(areaCode)
 #* 555
 print(mainNumber)
 #* 123-4567
+
+# Matching Multiple Groups with the Pipe
+someRegex = re.compile (r'John Smith|Jane Doe')
+mo1 = someRegex.search('John Smith and Jane Doe')
+mo1.group()
+#* 'John Smith'
+mo2 = someRegex.search('Jane Doe and John Smith')
+mo2.group()
+#* 'Jane Doe'
+
+batRegex = re.compile(r'Bat(man|mobile|copter|bat)')
+mo = batRegex.search('Batmobile lost a wheel')
+mo.group()
+#* 'Batmobile'
+mo.group(1)
+#* 'mobile'
+
+# Optional Matching with the Question Mark
+batRegex = re.compile(r'Bat(wo)?man')
+mo1 = batRegex.search('The Adventures of Batman')
+mo1.group()
+#* 'Batman'
+
+mo2 = batRegex.search('The Adventures of Batwoman')
+mo2.group()
+#* 'Batwoman'
+
+phoneRegex = re.compile(r'(\d\d\d-)?\d\d\d-\d\d\d\d')
+mo1 = phoneRegex.search('My number is 777-123-4567')
+mo1.group()
+#* '777-123-4567'
+
+mo2 = phoneRegex.search('My number is 123-4567')
+mo2.group()
+#* '123-4567'
+
+# Matching Zero or More with the Star
+batRegex = re.compile(r'Bat(wo)*man')
+mo1 = batRegex.search('The Adventures of Batman')
+mo1.group()
+#* 'Batman'
+
+mo2 = batRegex.search('The Adventures of Batwoman')
+mo2.group()
+#* 'Batwoman'
+
+mo3 = batRegex.search('The Adventures of Batwowowowoman')
+mo3.group()
+#* 'Batwowowowoman'
+
+# Matching One or More with the Plus
+batRegex = re.compile(r'Bat(wo)+man')
+mo1 = batRegex.search('The Adventures of Batwoman')
+mo1.group()
+#* 'Batwoman'
+
+mo2 = batRegex.search('The Adventures of Batwowowowoman')
+mo2.group()
+#* 'Batwowowowoman'
+
+mo3 = batRegex.search('The Adventures of Batman')
+mo3 == None
+#* True
