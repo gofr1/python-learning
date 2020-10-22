@@ -91,3 +91,90 @@ mo2.group()
 mo3 = batRegex.search('The Adventures of Batman')
 mo3 == None
 #* True
+
+# Matching Specific Repetitions with Braces
+naRegex = re.compile(r'(Na){3}')
+mo1 = naRegex.search('NaNaNa')
+mo1.group()
+#* 'NaNaNa'
+
+mo2 = naRegex.search('Na')
+mo2 == None
+#* True
+
+# Greedy and Non-greedy Matching
+#! Python’s regular expressions are greedy by default, which means that 
+#! in ambiguous situations they will match the longest string possible.
+greedyNaRegex = re.compile(r'(Na){3,5}')
+mo1 = greedyNaRegex.search('NaNaNaNaNa')
+mo1.group()
+#* 'NaNaNaNaNa'
+
+nongreedyNaRegex = re.compile(r'(Na){3,5}?')
+mo2 = nongreedyNaRegex.search('NaNaNaNaNa')
+mo2.group()
+#* 'NaNaNa'
+
+# findall() method
+# w/o groups
+phoneNumRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d') 
+phoneNumRegex.findall('Cell: 415-555-9999 Work: 212-555-0000')
+#* ['415-555-9999', '212-555-0000']
+
+# w/ groups
+phoneNumRegex = re.compile(r'(\d\d\d)-(\d\d\d)-(\d\d\d\d)') 
+phoneNumRegex.findall('Cell: 415-555-9999 Work: 212-555-0000')
+#* [('415', '555', '9999'), ('212', '555', '0000')]
+
+# Character Classes
+
+# In the earlier phone number regex example, you learned that \d could stand for any numeric digit. 
+# That is, \d is shorthand for the regular expression (0|1|2|3|4|5|6|7|8|9). 
+# There are many such shorthand character classes, as shown below:
+
+# Shorthand Codes for Common Character Classes
+
+#! Shorthand | Represents
+#! character |
+#! class     |
+#! -------------------------------------------------------------------------------------------------
+#! \d        | Any numeric digit from 0 to 9.
+#! \D        | Any character that is not a numeric digit from 0 to 9.
+#! \w        | Any letter, numeric digit, or the underscore character. (As matching “word” characters.)
+#! \W        | Any character that is not a letter, numeric digit, or the underscore character.
+#! \s        | Any space, tab, or newline character. (As matching “space” characters.)
+#! \S        | Any character that is not a space, tab, or newline.
+
+# The regular expression \d+\s\w+ will match 
+# text that has one or more numeric digits (\d+), 
+# followed by a whitespace character (\s), 
+# followed by one or more letter/digit/underscore characters (\w+). 
+# The findall() method returns all matching strings of the regex pattern in a list.
+
+xmasRegex = re.compile(r'\d+\s\w+')
+xmasRegex.findall('12 drummers, 11 pipers, 10 lords, 9 ladies, 8 maids, 7 swans, 6 geese, 5 rings, 4 birds, 3 hens, 2 doves, 1 partridge')
+#* ['12 drummers', '11 pipers', '10 lords', '9 ladies', '8 maids', '7 swans', '6 geese', '5 rings', '4 birds', '3 hens', '2 doves', '1 partridge']
+
+# Making Your Own Character Classes
+vowelRegex = re.compile(r'[aeiouAEIOU]')
+consonantRegex = re.compile(r'[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]')
+
+vowelRegex.findall('The quick brown FOX JUMPS OVER the lazy dog')
+#* ['e', 'u', 'i', 'o', 'O', 'U', 'O', 'E', 'e', 'a', 'o']
+consonantRegex.findall('The quick brown FOX JUMPS OVER the lazy dog')
+#* ['T', 'h', 'q', 'c', 'k', 'b', 'r', 'w', 'n', 'F', 'X', 'J', 'M', 'P', 'S', 'V', 'R', 't', 'h', 'l', 'z', 'y', 'd', 'g']
+
+# You can also include ranges of letters or numbers by using a hyphen.
+alphaNumericRegex = re.compile(r'[a-zA-Z0-9]')
+alphaNumericRegex.findall('No "punctuation marks" in the results. 11')
+#* ['N', 'o', 'p', 'u', 'n', 'c', 't', 'u', 'a', 't', 'i', 'o', 'n', 'm', 'a', 'r', 'k', 's', 'i', 'n', 't', 'h', 'e', 'r', 'e', 's', 'u', 'l', 't', 's', '1', '1']
+
+# Note that inside the square brackets, the normal regular expression symbols are not interpreted as such. 
+# This means you do not need to escape the ., *, ?, or () characters with a preceding backslash. 
+# For example, the character class [0-5.] will match digits 0 to 5 and a period. You do not need to write it as [0-5\.].
+
+# By placing a caret character (^) just after the character class’s opening bracket, you can make a negative character class. 
+# A negative character class will match all the characters that are not in the character class. 
+notAlphaNumericRegex = re.compile(r'[^a-zA-Z0-9]')
+notAlphaNumericRegex.findall('No "punctuation marks" in the results. 11')
+#* [' ', '"', ' ', '"', ' ', ' ', ' ', '.', ' ']
