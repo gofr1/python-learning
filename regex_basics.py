@@ -91,3 +91,14 @@ mo2.group()
 mo3 = batRegex.search('The Adventures of Batman')
 mo3 == None
 #* True
+
+# Matching Specific Repetitions with Braces
+naRegex = re.compile(r'(Na){3}')
+mo1 = naRegex.search('NaNaNa')
+mo1.group()
+#* 'NaNaNa'
+
+mo2 = naRegex.search('Na')
+mo2 == None
+#* True
+
