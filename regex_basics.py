@@ -114,3 +114,15 @@ nongreedyNaRegex = re.compile(r'(Na){3,5}?')
 mo2 = nongreedyNaRegex.search('NaNaNaNaNa')
 mo2.group()
 #* 'NaNaNa'
+
+# findall() method
+# w/o groups
+phoneNumRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d') 
+phoneNumRegex.findall('Cell: 415-555-9999 Work: 212-555-0000')
+#* ['415-555-9999', '212-555-0000']
+
+# w/ groups
+phoneNumRegex = re.compile(r'(\d\d\d)-(\d\d\d)-(\d\d\d\d)') 
+phoneNumRegex.findall('Cell: 415-555-9999 Work: 212-555-0000')
+#* [('415', '555', '9999'), ('212', '555', '0000')]
+
