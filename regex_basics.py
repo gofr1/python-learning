@@ -102,3 +102,15 @@ mo2 = naRegex.search('Na')
 mo2 == None
 #* True
 
+# Greedy and Non-greedy Matching
+#! Python’s regular expressions are greedy by default, which means that 
+#! in ambiguous situations they will match the longest string possible.
+greedyNaRegex = re.compile(r'(Na){3,5}')
+mo1 = greedyNaRegex.search('NaNaNaNaNa')
+mo1.group()
+#* 'NaNaNaNaNa'
+
+nongreedyNaRegex = re.compile(r'(Na){3,5}?')
+mo2 = nongreedyNaRegex.search('NaNaNaNaNa')
+mo2.group()
+#* 'NaNaNa'
