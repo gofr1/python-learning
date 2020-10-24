@@ -237,3 +237,25 @@ atRegex = re.compile(r'\w{1,2}at')
 atRegex.findall('The cat in the hat sat on the flat mat.')
 #* ['cat', 'hat', 'sat', 'flat', 'mat']
 
+# Matching Everything with Dot-Star
+
+#  Remember that the dot character means "any single character except the newline,"
+# and the star character means "zero or more of the preceding character."
+nameRegex = re.compile(r'First Name: (.*) Last Name: (.*)')
+mo = nameRegex.search('First Name: John Last Name: Doe')
+mo.group(1)
+#* 'John'
+mo.group(2)
+#* 'Doe'
+
+#  The dot-star uses greedy mode: It will always try to match as much text as possible. 
+# To match any and all text in a non-greedy fashion, use the dot, star, and question mark (.*?).
+nongreedyRegex = re.compile(r'<.*?>')
+mo = nongreedyRegex.search('<To serve man> for dinner.>')
+mo.group()
+#* '<To serve man>'
+
+greedyRegex = re.compile(r'<.*>')
+mo = greedyRegex.search('<To serve man> for dinner.>')
+mo.group()
+#* '<To serve man> for dinner.>'
