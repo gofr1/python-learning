@@ -259,3 +259,16 @@ greedyRegex = re.compile(r'<.*>')
 mo = greedyRegex.search('<To serve man> for dinner.>')
 mo.group()
 #* '<To serve man> for dinner.>'
+
+# Matching Newlines with the Dot Character
+
+#  The dot-star will match everything except a newline. 
+noNewlineRegex = re.compile('.*')
+noNewlineRegex.search('Serve the public trust.\nProtect the innocent.\nUphold the law.').group()
+#* 'Serve the public trust.'
+
+# By passing re.DOTALL as the second argument to re.compile(), you can make the dot character match 
+# all characters, including the newline character.
+newlineRegex = re.compile('.*', re.DOTALL)
+newlineRegex.search('Serve the public trust.\nProtect the innocent.\nUphold the law.').group()
+#* 'Serve the public trust.\nProtect the innocent.\nUphold the law.'
