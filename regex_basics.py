@@ -178,3 +178,97 @@ alphaNumericRegex.findall('No "punctuation marks" in the results. 11')
 notAlphaNumericRegex = re.compile(r'[^a-zA-Z0-9]')
 notAlphaNumericRegex.findall('No "punctuation marks" in the results. 11')
 #* [' ', '"', ' ', '"', ' ', ' ', ' ', '.', ' ']
+
+# The Caret and Dollar Sign Characters
+
+#  You can also use the caret symbol (^) at the start of a regex to indicate that a match must occur 
+# at the beginning of the searched text. Likewise, you can put a dollar sign ($) at the end of the 
+# regex to indicate the string must end with this regex pattern. 
+#  And you can use the ^ and $ together to indicate that the entire string must match the regex—that 
+# is, it’s not enough for a match to be made on some subset of the string.
+
+beginsWithHello = re.compile(r'^Hello')
+beginsWithHello.search('Hello, world!')
+#* <re.Match object; span=(0, 5), match='Hello'>
+
+beginsWithHello.search('He said hello.') == None
+#* True
+
+# The r'\d$' regular expression string matches strings that end with a numeric character from 0 to 9.
+endsWithNumber = re.compile(r'\d$')
+endsWithNumber.search('Your number is 42')
+#* <re.Match object; span=(16, 17), match='2'>
+
+endsWithNumber.search('Your number is forty two.') == None
+#* True
+
+# The r'^\d+$' regular expression string matches strings that both begin and end with one or more numeric characters.
+wholeStringIsNum = re.compile(r'^\d+$')
+wholeStringIsNum.search('1234567890')
+#* <re.Match object; span=(0, 10), match='1234567890'>
+
+wholeStringIsNum.search('12345xyz67890') == None
+#* True
+wholeStringIsNum.search('12  34567890') == None
+#* True
+
+#! Carrots cost dollars (Caret^ symbol comes first, Dollar$ comes as the end)
+
+# The Wildcard Character
+
+# The . (or dot) character in a regular expression is called a wildcard 
+# and will match any character except for a newline.
+atRegex = re.compile(r'.at')
+atRegex.findall('The cat in the hat sat on the flat mat.')
+#* ['cat', 'hat', 'sat', 'lat', 'mat']
+
+# Remember that the dot character will match just one character, which is why the match for 
+# the text flat in the previous example matched only lat. 
+# To match an actual dot, escape the dot with a backslash: \.
+atRegex = re.compile(r'.at\.')
+atRegex.findall('The cat in the hat sat on the flat mat.')
+#* ['mat.']
+
+atRegex = re.compile(r'..at')
+atRegex.findall('The cat in the hat sat on the flat mat.')
+#* [' cat', ' hat', ' sat', 'flat', ' mat']
+
+atRegex = re.compile(r'\w{1,2}at')
+atRegex.findall('The cat in the hat sat on the flat mat.')
+#* ['cat', 'hat', 'sat', 'flat', 'mat']
+
+# Matching Everything with Dot-Star
+
+#  Remember that the dot character means "any single character except the newline,"
+# and the star character means "zero or more of the preceding character."
+nameRegex = re.compile(r'First Name: (.*) Last Name: (.*)')
+mo = nameRegex.search('First Name: John Last Name: Doe')
+mo.group(1)
+#* 'John'
+mo.group(2)
+#* 'Doe'
+
+#  The dot-star uses greedy mode: It will always try to match as much text as possible. 
+# To match any and all text in a non-greedy fashion, use the dot, star, and question mark (.*?).
+nongreedyRegex = re.compile(r'<.*?>')
+mo = nongreedyRegex.search('<To serve man> for dinner.>')
+mo.group()
+#* '<To serve man>'
+
+greedyRegex = re.compile(r'<.*>')
+mo = greedyRegex.search('<To serve man> for dinner.>')
+mo.group()
+#* '<To serve man> for dinner.>'
+
+# Matching Newlines with the Dot Character
+
+#  The dot-star will match everything except a newline. 
+noNewlineRegex = re.compile('.*')
+noNewlineRegex.search('Serve the public trust.\nProtect the innocent.\nUphold the law.').group()
+#* 'Serve the public trust.'
+
+# By passing re.DOTALL as the second argument to re.compile(), you can make the dot character match 
+# all characters, including the newline character.
+newlineRegex = re.compile('.*', re.DOTALL)
+newlineRegex.search('Serve the public trust.\nProtect the innocent.\nUphold the law.').group()
+#* 'Serve the public trust.\nProtect the innocent.\nUphold the law.'
