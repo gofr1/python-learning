@@ -213,3 +213,27 @@ wholeStringIsNum.search('12  34567890') == None
 #* True
 
 #! Carrots cost dollars (Caret^ symbol comes first, Dollar$ comes as the end)
+
+# The Wildcard Character
+
+# The . (or dot) character in a regular expression is called a wildcard 
+# and will match any character except for a newline.
+atRegex = re.compile(r'.at')
+atRegex.findall('The cat in the hat sat on the flat mat.')
+#* ['cat', 'hat', 'sat', 'lat', 'mat']
+
+# Remember that the dot character will match just one character, which is why the match for 
+# the text flat in the previous example matched only lat. 
+# To match an actual dot, escape the dot with a backslash: \.
+atRegex = re.compile(r'.at\.')
+atRegex.findall('The cat in the hat sat on the flat mat.')
+#* ['mat.']
+
+atRegex = re.compile(r'..at')
+atRegex.findall('The cat in the hat sat on the flat mat.')
+#* [' cat', ' hat', ' sat', 'flat', ' mat']
+
+atRegex = re.compile(r'\w{1,2}at')
+atRegex.findall('The cat in the hat sat on the flat mat.')
+#* ['cat', 'hat', 'sat', 'flat', 'mat']
+
