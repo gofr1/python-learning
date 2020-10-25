@@ -272,3 +272,44 @@ noNewlineRegex.search('Serve the public trust.\nProtect the innocent.\nUphold th
 newlineRegex = re.compile('.*', re.DOTALL)
 newlineRegex.search('Serve the public trust.\nProtect the innocent.\nUphold the law.').group()
 #* 'Serve the public trust.\nProtect the innocent.\nUphold the law.'
+
+
+#! The ? matches zero or one of the preceding group.
+#! The * matches zero or more of the preceding group.
+#! The + matches one or more of the preceding group.
+#! The {n} matches exactly n of the preceding group.
+#! The {n,} matches n or more of the preceding group.
+#! The {,m} matches 0 to m of the preceding group.
+#! The {n,m} matches at least n and at most m of the preceding group.
+#! {n,m}? or *? or +? performs a non-greedy match of the preceding group.
+#! ^spam means the string must begin with spam.
+#! spam$ means the string must end with spam.
+#! The . matches any character, except newline characters.
+#! \d, \w, and \s match a digit, word, or space character, respectively.
+#! \D, \W, and \S match anything except a digit, word, or space character, respectively.
+#! [abc] matches any character between the brackets (such as a, b, or c).
+#! [^abc] matches any character that isn’t between the brackets.
+
+# Case-Insensitive Matching
+
+# To make your regex case-insensitive, you can pass re.IGNORECASE 
+# or re.I as a second argument to re.compile().
+robocop = re.compile(r'robocop', re.I)
+robocop.search('RoboCop is part man, part machine, all cop.').group()
+#* 'RoboCop'
+
+robocop.search('ROBOCOP protects the innocent.').group()
+#* 'ROBOCOP'
+
+robocop.search('John, why does your book talk about robocop?').group()
+#* 'robocop'
+
+# Substituting Strings
+
+namesRegex = re.compile(r'Agent \w+')
+namesRegex.sub('CENSORED', 'Agent Alice gave the secret documents to Agent Bob.')
+#* 'CENSORED gave the secret documents to CENSORED.'
+
+agentNamesRegex = re.compile(r'Agent (\w)\w*')
+agentNamesRegex.sub(r'\1****', 'Agent Alice told Agent Carol that Agent Eve knew Agent Bob was a double agent.')
+#* 'A**** told C**** that E**** knew B**** was a double agent.'
