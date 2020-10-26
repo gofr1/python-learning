@@ -332,3 +332,11 @@ phoneRegex = re.compile(r'''(
 mo = phoneRegex.search('My number is 555.123-4567 ext. 456.')
 mo.groups()
 #* ('555.123-4567 ext. 456', '555', '.', '123', '-', '4567', ' ext. 456', 'ext.')
+
+# Combining flags (re.IGNORECASE, re.DOTALL, re.VERBOSE etc)
+
+# the re.compile() function takes only a single value as its second argument.
+# but you can use pipes:
+someRegexValue = re.compile('foo', re.IGNORECASE | re.DOTALL | re.VERBOSE)
+someRegexValue.search('Foo bar').group()
+#* 'Foo'
