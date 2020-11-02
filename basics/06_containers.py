@@ -157,19 +157,66 @@ odd = {1, 3, 5, 7, 9}
 even = digits_set - odd
 print(even) # {0, 2, 4, 6, 8}
 
+# Intersection
 prime = {2, 3, 5, 7}
 prime_even = prime & even
 print(prime_even) #  {2} - because this element is in both sets
+print(even.intersection(prime)) # {2}
+# or
+print(prime.intersection(even)) # {2}
 
 numbers = odd | even
 print(numbers) # sorted ???
 
+# Symmetric difference
 first_five = set([0, 1, 2, 3, 4, 5])
 two_to_six = set([2, 3, 4, 5, 6])
 in_one = first_five ^ two_to_six
 print(in_one) #  {0, 1, 6}
+print(first_five.symmetric_difference(two_to_six)) # {0, 1, 6}
+# or
+print(two_to_six.symmetric_difference(first_five)) # {0, 1, 6}
 
+# Difference
+print(first_five.difference(two_to_six)) # {0, 1}
+print(two_to_six.difference(first_five)) # {6}
+print(first_five - two_to_six) # {0, 1}
+print(two_to_six - first_five) # {6}
 # 'in' for sets is working faster than for lists
+
+# Updates:
+# difference
+A = {'a', 'c', 'g', 'd'}
+B = {'c', 'f', 'g'}
+
+# A will contain values which are not in set B
+A.difference_update(B)
+print(A) # {'d', 'a'} 
+
+# symmetric diff
+A = {'a', 'c', 'g', 'd'}
+B = {'c', 'f', 'g'}
+
+# A will contain all elements that are in A and not in B and vice-versa
+A.symmetric_difference_update(B)
+print(A) # {'d', 'a', 'f'}
+
+# intersection
+A = {'a', 'c', 'g', 'd'}
+B = {'c', 'f', 'g'}
+
+# A will contain values which are in both sets
+A.intersection_update(B)
+print(A) # {'g', 'c'}
+
+
+# check whether there are duplicates in a list
+some_list = ['a', 'b', 'b', 'c', 'd', 'm', 'm', 'n']
+# someList.count('b') #* 2
+duplicates = set([x for x in some_list if some_list.count(x) > 1])
+print(duplicates)
+# {'b', 'm'}
+
 
 
 # task1
