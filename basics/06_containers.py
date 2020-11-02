@@ -193,6 +193,14 @@ B = {'c', 'f', 'g'}
 A.difference_update(B)
 print(A) # {'d', 'a'} 
 
+# symetric diff
+A = {'a', 'c', 'g', 'd'}
+B = {'c', 'f', 'g'}
+
+# A will contain all elements that are in A and not in B and vice-versa
+A.symmetric_difference_update(B)
+print(A) # {'d', 'a', 'f'}
+
 # intersection
 A = {'a', 'c', 'g', 'd'}
 B = {'c', 'f', 'g'}
