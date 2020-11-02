@@ -14,3 +14,25 @@ for data in some_data:
 # value '1' evaluates as True
 # value 'True' evaluates as True
 # value 'False' evaluates as False
+
+# more obscure and not widely used example involves tuples
+isPlayful = True
+dogPersonality = ('grim', 'playful')[isPlayful]
+print(f'The dog is {dogPersonality}')
+#* The dog is playful
+
+# ShortHand ternary
+True or 'Some'
+#* True
+False or 'Some'
+#* 'Some'
+
+# Some example
+def masking(realName, someAlias = None):
+    someAlias = someAlias or realName
+    return someAlias
+
+masking('John Doe')
+#* 'John Doe'
+masking('John Doe', 'nom de guerre')
+#* 'nom de guerre'
