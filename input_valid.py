@@ -69,3 +69,21 @@ response = pyip.inputNum(limit = 2, default = 'N/A')
 
 print(response)
 #* N/A
+
+# The allowRegexes and blockRegexes keyword arguments
+
+# accept Roman numerals in addition to the usual numbers
+response = pyip.inputNum(allowRegexes = [r'(I|V|X|L|C|D|M)+', r'zero'])
+print(response)
+
+response = pyip.inputNum(blockRegexes = [r'[02468]$'])
+#* 42
+#* This response is invalid.
+#* 68
+#* This response is invalid.
+#* 43
+
+response = pyip.inputStr(allowRegexes = [r'victory', 'sunshine'], blockRegexes = [r'elephant'])
+#* elephant
+#* This response is invalid.
+#* victory
