@@ -17,3 +17,18 @@ while True:
 print(f'Your age is {age}.')
 
 
+# PyInputPlus contains functions similar to input() for several kinds of data: 
+# numbers, dates, email addresses, and more. 
+# If the user ever enters invalid input, such as a badly formatted date or a number 
+# that is outside of an intended range, PyInputPlus will reprompt them for 
+# input just like our code in the previous section did.
+
+# sudo pip3 install pyinputplus
+import pyinputplus as pyip
+
+response = pyip.inputNum()
+#* k
+#* 'k' is not a number.
+#* 89
+
+response = pyip.inputInt(prompt = 'Enter a number: ')
