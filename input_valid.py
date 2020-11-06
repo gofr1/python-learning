@@ -32,3 +32,21 @@ response = pyip.inputNum()
 #* 89
 
 response = pyip.inputInt(prompt = 'Enter a number: ')
+
+# The min, max, greaterThan, and lessThan Keyword Arguments
+response = pyip.inputNum('Enter num: ', min = 4)
+#* Enter num: 2
+#* Number must be at minimum 4.
+#* Enter num: 24
+
+response = pyip.inputNum('Enter num: ', greaterThan = 4)
+#* Enter num: 4
+#* Number must be greater than 4.
+#* Enter num: 6
+
+response = pyip.inputNum('>', min=4, lessThan=6)
+#* >2
+#* Number must be at minimum 4.
+#* 7
+#* Number must be less than 6.
+#* >5
