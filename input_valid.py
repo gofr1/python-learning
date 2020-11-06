@@ -33,7 +33,7 @@ response = pyip.inputNum()
 
 response = pyip.inputInt(prompt = 'Enter a number: ')
 
-# The min, max, greaterThan, and lessThan Keyword Arguments
+# The min, max, greaterThan, and lessThan keyword arguments
 response = pyip.inputNum('Enter num: ', min = 4)
 #* Enter num: 2
 #* Number must be at minimum 4.
@@ -50,3 +50,22 @@ response = pyip.inputNum('>', min=4, lessThan=6)
 #* 7
 #* Number must be less than 6.
 #* >5
+
+# The limit, timeout, and default keyword arguments
+response = pyip.inputNum(limit = 2)
+#* ...
+#* pyinputplus.RetryLimitException
+
+response = pyip.inputNum(timeout = 5)
+# if nothing is prompt in 5 seconds
+#* ...
+#* pyinputplus.TimeoutException
+
+response = pyip.inputNum(limit = 2, default = 'N/A')
+#* ff
+#* 'ff' is not a number.
+#* gg
+#* 'gg' is not a number.
+
+print(response)
+#* N/A
