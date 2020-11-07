@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from collections import defaultdict
+import json
 
 def main():
     # define a list of items we want to count
@@ -30,6 +31,15 @@ def main():
 
     # and it will be added to default dictionary
     print(fruitCounter)
+
+    some_dict = {}
+    some_dict['colours']['favourite'] = "yellow"
+    
+    # Unlike dict, with defaultdict you do not need to check whether a key is present or not
+    tree = lambda: defaultdict(tree)
+    some_dict = tree()
+    some_dict['colours']['favourite'] = "yellow"
+    print(json.dumps(some_dict))
 
 if __name__ == '__main__':
     main()
