@@ -41,5 +41,17 @@ def main():
     b = {"a": 1, "c": 3, "b": 2}
     print("Equality test (dict):", a==b) # False
 
+    # OrderedDict keeps its entries sorted as they are initially inserted. 
+    # Overwriting a value of an existing key doesn’t change the position of that key. 
+    # However, deleting and reinserting an entry moves the key to the end of the dictionary.
+    colours = OrderedDict([("Red", 198), ("Green", 170), ("Blue", 160)])
+    for key, value in colours.items():
+        print(key, value)
+
+    # in the default dictionary the position of keys is not guaranteed:
+    colours =  {"Red" : 198, "Green" : 170, "Blue" : 160}
+    for key, value in colours.items():
+        print(key, value)
+
 if __name__ == '__main__':
     main()
