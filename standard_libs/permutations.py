@@ -4,7 +4,7 @@ import itertools
 
 def main():
     # permutations
-    # a way, especially oneof several possible variations
+    # a way, especially one of several possible variations
     # in which a set of numbers or things can be ordered or
     # arranged
     election = {1: "John", 2: "Tom", 3: "Nathan"}
