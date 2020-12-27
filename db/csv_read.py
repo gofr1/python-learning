@@ -18,3 +18,9 @@ with open('sample.csv', newline='') as csvfile: # read by default
 #* 4/5/2015 13:34; Apples; 73
 #* ...
 #* 4/10/2015 2:40; Strawberries; 98
+
+# Reading file with header
+with open('sampleWithHeader.csv') as sampleFile:
+    sampleDictReader = csv.DictReader(sampleFile)
+    for row in sampleDictReader:
+        print(row['Timestamp'], row['Fruit'], row['Quantity'])
