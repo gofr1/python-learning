@@ -30,3 +30,18 @@ with open('output.csv', 'w', newline='') as outputFile:
 #* "Hello, world!",That's,me,!
 #* 0,1,1,2
 #* 
+
+with open('outputWithHeader.csv', 'w', newline='') as outputFile:
+    outputDictWriter = csv.DictWriter(outputFile, ['Name', 'Pet', 'Phone'])
+    outputDictWriter.writeheader()
+
+    outputDictWriter.writerow({'Name': 'Alice', 'Pet': 'cat', 'Phone': '555-1234'})
+    outputDictWriter.writerow({'Name': 'Bob', 'Phone': '555-9999'})
+    outputDictWriter.writerow({'Phone': '555-5555', 'Name': 'Carol', 'Pet': 'dog'})
+
+# outputWithHeader.csv
+#* Name,Pet,Phone
+#* Alice,cat,555-1234
+#* Bob,,555-9999
+#* Carol,dog,555-5555
+#* 
