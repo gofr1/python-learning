@@ -34,3 +34,18 @@ for i in range(4):
     pyautogui.move(0, 100, duration=0.25)   # down
     pyautogui.move(-100, 0, duration=0.25)  # left
     pyautogui.move(0, -100, duration=0.25)  # up
+
+# Get mouse position
+pyautogui.position() # Get current mouse position.
+#* Point(x=717, y=586)
+
+pyautogui.position() # Get current mouse position again.
+#* Point(x=801, y=688)
+p = pyautogui.position() # And again.
+p
+#* Point(x=756, y=665)
+
+p[0] # The x-coordinate is at index 0. y - 1
+#* 756
+p.x # The x-coordinate is also in the x attribute. p.y
+#* 756
