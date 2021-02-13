@@ -35,5 +35,5 @@ if bbox is not None:
 
 # display the result
 cv2.imshow("img", img)
-cv2.waitKey(0)
+cv2.waitKey(1)
 cv2.destroyAllWindows()
