@@ -1,7 +1,9 @@
 """Shopping events"""
+from datetime import datetime
+
 event = {'purchases': [{
    'name': 'John Doe',
-   'purchase date': '2021-02-15T10:08:15.561Z',
+   'purchase date': datetime(2021, 2, 15, 10, 8, 15, 561),
    'items': [{
        'item': 'Beer',
        'amount': 6,
@@ -17,7 +19,7 @@ event = {'purchases': [{
     }]
     },{
    'name': 'Jack Holmes',
-   'purchase date': '2021-02-10T08:19:34.786Z',
+   'purchase date': datetime(2021, 2, 10, 8, 19, 34, 786),
    'items': [{
        'item': 'Snack',
        'amount': 10,
