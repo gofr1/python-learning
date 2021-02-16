@@ -1,7 +1,4 @@
 #!/usr/bin/env python3
-import os
-os.chdir('./serialization/json')
-
 import logs_sample as ls
 from logs_def import default
 import json

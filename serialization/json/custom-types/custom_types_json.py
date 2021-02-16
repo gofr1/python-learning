@@ -1,6 +1,3 @@
-import os
-os.chdir('./serialization/json')
-
 from purchases import event
 import json
 
