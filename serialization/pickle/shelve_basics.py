@@ -1,8 +1,4 @@
-import shelve, os
-
-#os.chdir('./serialization')
-#os.getcwd()
-
+import shelve
 from pickle_basics import move0, move1, move2, move3
 
 db = shelve.open('dance.db') # Key-value store

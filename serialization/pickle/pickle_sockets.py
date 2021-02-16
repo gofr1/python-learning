@@ -1,9 +1,5 @@
-import pickle, os
+import pickle
 from socket import socketpair
-
-os.chdir('./serialization')
-os.getcwd()
-
 from pickle_basics import move0, move1, move2, move3
 
 # Defime sockets for writing and reading
