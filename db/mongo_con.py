@@ -1,8 +1,6 @@
 # pip install pymongo
 import configparser
 from pymongo import MongoClient
-from random import randint
-
 
 section_name = 'mongo_local'
 config = configparser.ConfigParser()
@@ -23,6 +21,16 @@ db=client.test
 # Search some document
 fivestar = db.zips.find_one({'_id': '01001'})
 print(fivestar)
+
+# update document
+db.products.update_one({'_id': 10}, {'$set': {'item': 'Mouse'}})
+# in db:
+#* {
+#*   "_id": 10,
+#*   "item": "Mouse",
+#*   "qty": 50,
+#*   "type": "Computer"
+#* }
 
 # Close connection
 client.close()
