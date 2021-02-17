@@ -1,6 +1,7 @@
 // Weather data 
+syntax = "proto3";
 package db;
-import "google/protobuf/timestamp.proto"
+import "google/protobuf/timestamp.proto";
 
 message Temperature {
     google.protobuf.Timestamp time = 1;
