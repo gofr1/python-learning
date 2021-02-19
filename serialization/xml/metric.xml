@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<metric>
+    <time>2021-02-19T20:23:30.804564</time>
+    <name>metric</name>
+    <value>3.14</value>
+    <labels>
+        <label key="host" value="prod"/>
+        <label key="version" value="1.2.6"/>
+    </labels>
+</metric>
