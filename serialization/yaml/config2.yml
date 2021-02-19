@@ -1,0 +1,13 @@
+api_host: app.example.com
+auth_server:
+  host: api_host
+  port: 8787
+db_server:
+  host: db.example.com
+  passwrd: s3cr3t
+  port: 9898
+  user: dbu
+log_server:
+  endpoint: /log
+  host: app.example.com
+  port: 9797
