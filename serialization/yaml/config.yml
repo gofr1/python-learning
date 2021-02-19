@@ -1,0 +1,18 @@
+# Sample YAML config for application
+
+api_host: &api_host app.example.com # api_host is an anchor
+
+auth_server:
+  host: api_host # reference tapi_host
+  port: 8787
+
+db_server:
+  host: db.example.com
+  port: 9898
+  user: dbu
+  passwrd: s3cr3t
+
+log_server:
+  host: *api_host # reference tapi_host
+  port: 9797
+  endpoint: /log
