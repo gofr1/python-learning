@@ -1,4 +1,3 @@
-from os import chdir
 import xml.etree.ElementTree as xml
 from datetime import datetime
 
