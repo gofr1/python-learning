@@ -1,10 +1,14 @@
-#!/usr/local/bin python3
+#!/usr/bin/env python3
 
 r"""Simple implementation of ``cat`` unix command
 Only supported parameter is ``number``
 This example demonstrates file structure
 and useful hints of python""" # documentation
 
+# We will take parameters/arguments from user input like:
+# ./18_cat_example.py --help # will show help
+# ./18_cat_example.py filename # will show data stored in file like cat
+# Use argumnets as input for a script
 import argparse
 import logging
 import sys
