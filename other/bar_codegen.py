@@ -12,3 +12,13 @@ my_code = EAN13(number)
   
 # Our barcode is ready. Let's save it. 
 my_code.save("new_code")
+
+# let’s generate the same barcode in PNG format
+
+# import ImageWriter to generate an image file 
+from barcode.writer import ImageWriter 
+
+my_code = EAN13(number, writer=ImageWriter()) 
+  
+# Our barcode is ready. Let's save it. 
+my_code.save("new_code1")
