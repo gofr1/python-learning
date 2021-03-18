@@ -9,3 +9,10 @@ filename = filedialog.askopenfile()
 print(filename.name)
 
 colorchooser.askcolor(initialcolor='#FFFFFF') # returns RGB and HEX representation
+
+# Other types of message boxes
+messagebox.showwarning(title='showwarning', message='Warning')
+messagebox.showerror(title='showerror', message='Error')
+messagebox.askquestion(title='askquestion', message='Are you sure?')
+messagebox.askokcancel(title='askokcancel', message='Want to continue?')
+messagebox.askretrycancel(title='askretrycancel', message='Try again?')   
