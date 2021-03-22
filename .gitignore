@@ -15,3 +15,5 @@
 *.xlsx
 *.pdf
 *.pkl
+*.sqlite3
+__pycache__/
