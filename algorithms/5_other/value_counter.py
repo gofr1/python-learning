@@ -23,3 +23,7 @@ print(counter)
 #     counter[item] += 1
 
 # print(counter)
+
+# One-Liner to count elements in the list
+counter = {item: items.count(item) for item in set(items)}
+print(counter)
