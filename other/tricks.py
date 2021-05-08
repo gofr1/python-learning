@@ -87,3 +87,10 @@ res = sum(some_values[::2])
 
 print(res)
 #* 12
+
+#! Read lines from a file and store them in a list
+filename = 'the-zen-of-python.txt'
+
+lines = [line.strip() for line in open(filename)]
+
+print(lines)
