@@ -78,3 +78,12 @@ request = urllib.request.urlopen(url).read()
 
 the_ip = re.findall(r"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b", request.decode('utf8'))
 print("Your current IP Address is: {}".format(the_ip[0]))
+
+#! This one-liner uses advanced slicing notation. 
+# data
+some_values = [0, 1, 2, 3, 4, 5, 6]
+# get sum over every second element
+res = sum(some_values[::2])
+
+print(res)
+#* 12
