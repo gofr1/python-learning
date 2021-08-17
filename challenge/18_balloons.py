@@ -116,8 +116,19 @@ print(page_contents)
 
 # <!-- maybe consider deltas.gz -->
 
-url = f"{standard_url}deltas.gz"
+gz_filename = 'deltas.gz'
+
+url = f"{standard_url}{gz_filename}"
 gz_content = requests.get(url, auth = HTTPBasicAuth('huge', 'file')).content
 
-with open('deltas.gz', 'wb') as fout:
+with open(gz_filename, 'wb') as fout:
     fout.write(gz_content)
+
+# Now we have a file
+import gzip
+
+with gzip.open(gz_filename, 'rb') as f:
+    file_content = f.read()
+
+for string in str(file_content).split('\\n'):
+    print(string)
