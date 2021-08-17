@@ -103,3 +103,21 @@ diff = ImageChops.difference(right_img, left_img)
 # showing & saving the difference 
 # diff.show()
 diff.save('both_img.png') 
+
+
+# Hm... <!-- it is more obvious that what you might think -->
+# the difference is brightness! Let's try:
+
+url = f"{standard_url}brightness.html"
+response = requests.get(url, auth = HTTPBasicAuth('huge', 'file'))
+page_contents = BeautifulSoup(response.text, 'html.parser')
+
+print(page_contents)
+
+# <!-- maybe consider deltas.gz -->
+
+url = f"{standard_url}deltas.gz"
+gz_content = requests.get(url, auth = HTTPBasicAuth('huge', 'file')).content
+
+with open('deltas.gz', 'wb') as fout:
+    fout.write(gz_content)
