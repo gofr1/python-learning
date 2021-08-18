@@ -132,3 +132,24 @@ with gzip.open(gz_filename, 'rb') as f:
 
 for string in str(file_content).split('\\n'):
     print(string)
+
+# Guess there is to parts in file, let's get them
+
+bytes_string_left = ''
+bytes_string_right = ''
+i=0
+
+for string in str(file_content).split('\\n'):
+    len_string = len(string)
+    bytes_string_left += string[0:len_string//2].lstrip() 
+    bytes_string_right += string[-len_string//2:].lstrip() + ' '
+    if i == 0:
+        bytes_string_left = bytes_string_left[2:] + ' '
+    i+=1
+
+with open('sample_left.png', 'wb') as fout:
+    fout.write(bytearray.fromhex(bytes_string_left[0:-2]))
+
+with open('sample_right.png', 'wb') as fout:
+    fout.write(bytearray.fromhex(bytes_string_right[0:-2]))
+
