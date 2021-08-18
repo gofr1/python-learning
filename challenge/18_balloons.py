@@ -141,8 +141,8 @@ i=0
 
 for string in str(file_content).split('\\n'):
     len_string = len(string)
-    bytes_string_left += string[0:len_string//2].lstrip() 
-    bytes_string_right += string[-len_string//2:].lstrip() + ' '
+    bytes_string_left += string[0:len_string//2].strip() +' '
+    bytes_string_right += string[-len_string//2:].strip() +' '
     if i == 0:
         bytes_string_left = bytes_string_left[2:] + ' '
     i+=1
@@ -153,3 +153,48 @@ with open('sample_left.png', 'wb') as fout:
 with open('sample_right.png', 'wb') as fout:
     fout.write(bytearray.fromhex(bytes_string_right[0:-2]))
 
+# But guess it is not the thing, images are incomplete
+# Let's try to check the differences and write in different files
+# 1 that is in left but not in right
+# 2 file is in right but not in left
+# 3 are in both files
+
+bytes_left = []
+bytes_right = []
+i=0
+
+for string in str(file_content).split('\\n'):
+    len_string = len(string)
+    bytes_string_left = string[0:len_string//2].strip() 
+    bytes_string_right = string[-len_string//2:].strip()
+    if i == 0:
+        bytes_string_left = bytes_string_left[2:]
+    i+=1
+    bytes_left.append(bytes_string_left)
+    bytes_right.append(bytes_string_right)
+
+bytes_all = zip(bytes_left[:-1], bytes_right[:-1])
+bytes_one = ''
+bytes_two = ''
+bytes_three = ''
+
+for ba in bytes_all:
+    if ba[0] == ba[1]:
+        bytes_three += ba[0] + ' ' + ba[1] +' '
+    else:
+        if ba[0] == '':
+            bytes_one += ba[1] +' '
+            bytes_two += ba[1] + ' '
+        else:           
+            bytes_one += ba[0] + ' ' + ba[1] +' '
+            bytes_two += ba[1] + ' ' + ba[0] + ' '
+        #print(f'"{ba[0]}","{ba[1]}')
+
+with open('1.png', 'wb') as fout:
+    fout.write(bytearray.fromhex(bytes_one))
+
+with open('2.png', 'wb') as fout:
+    fout.write(bytearray.fromhex(bytes_two))
+
+with open('3.png', 'wb') as fout:
+    fout.write(bytearray.fromhex(bytes_three))
