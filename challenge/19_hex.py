@@ -39,3 +39,33 @@ page_contents = BeautifulSoup(response.text, 'html.parser')
 
 print(page_contents)
 #* - "what are you apologizing for?"
+
+
+# Let's play with wave module
+import wave
+
+indian =  wave.Wave_read('indian.wav')
+print(f'Number of channels: {indian.getnchannels()}')
+print(f'Sample width: {indian.getsampwidth()}')
+print(f'Frame rate: {indian.getframerate()}')
+print(f'Number of frames: {indian.getnframes()}')
+print(f'parameters: {indian.getparams()}')
+
+new = wave.Wave_write('new.wav')
+new.setframerate(11025)
+new.setsampwidth(2)
+new.setnframes(55788//2)
+new.setnchannels(1)
+
+print(f'Number of channels: {new.getnchannels()}')
+print(f'Sample width: {new.getsampwidth()}')
+print(f'Frame rate: {new.getframerate()}')
+print(f'Number of frames: {new.getnframes()}')
+print(f'parameters: {new.getparams()}')
+
+data = indian.readframes(55788)
+
+new.writeframes(data)
+
+indian.close()
+new.close()
