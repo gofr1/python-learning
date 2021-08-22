@@ -18,3 +18,5 @@
 *.sqlite3
 __pycache__/
 *.gz
+*.wav
+*.mp3
