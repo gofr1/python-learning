@@ -2,8 +2,6 @@
 from bs4 import BeautifulSoup
 import requests
 from requests.auth import HTTPBasicAuth
-from io import BytesIO
-from PIL import Image, ImageChops 
 
 standard_url = "http://www.pythonchallenge.com/pc/hex/"
 url = f"{standard_url}bin.html"
@@ -45,27 +43,47 @@ print(page_contents)
 import wave
 
 indian =  wave.Wave_read('indian.wav')
-print(f'Number of channels: {indian.getnchannels()}')
-print(f'Sample width: {indian.getsampwidth()}')
-print(f'Frame rate: {indian.getframerate()}')
-print(f'Number of frames: {indian.getnframes()}')
-print(f'parameters: {indian.getparams()}')
+print(f'''Number of channels: {indian.getnchannels()}'
+Sample width: {indian.getsampwidth()}
+Frame rate: {indian.getframerate()}
+Number of frames: {indian.getnframes()}''')
+
+# use parameters: .getparams()} to get al once
 
 new = wave.Wave_write('new.wav')
-new.setframerate(11025)
-new.setsampwidth(2)
-new.setnframes(55788//2)
+new.setframerate(11025*2) # increase frame rate
+new.setsampwidth(1) # decrease sample width
+new.setnframes(55788)
 new.setnchannels(1)
 
-print(f'Number of channels: {new.getnchannels()}')
-print(f'Sample width: {new.getsampwidth()}')
-print(f'Frame rate: {new.getframerate()}')
-print(f'Number of frames: {new.getnframes()}')
-print(f'parameters: {new.getparams()}')
+print(f'''Number of channels: {new.getnchannels()}
+Sample width: {new.getsampwidth()}
+Frame rate: {new.getframerate()}
+Number of frames: {new.getnframes()}''')
 
+# write data from one file to another
 data = indian.readframes(55788)
 
+# write audio frames and make sure nframes is correct.
 new.writeframes(data)
 
+# close files
 indian.close()
 new.close()
+
+# play sound
+playsound('new.wav')
+
+#* Yoy are an idiot, a-ha aha-ha...
+# :) let's check idiot.html
+
+standard_url = "http://www.pythonchallenge.com/pc/hex/"
+url = f"{standard_url}idiot.html"
+response = requests.get(url, auth = HTTPBasicAuth('butter', 'fly'))
+page_contents = BeautifulSoup(response.text, 'html.parser')
+
+print(page_contents)
+
+#* <img border="0" src="../stuff/leopold.jpg"/><br/><br/>
+#*         "Now you should apologize..."<br/>
+#* <br/><a href="idiot2.html">Continue to the next level</a>
