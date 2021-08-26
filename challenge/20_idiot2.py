@@ -29,5 +29,8 @@ print(response.status_code)
 session = requests.Session()
 response = session.get(url, auth = HTTPBasicAuth('butter', 'fly'))
 print(session.cookies.get_dict())
+#... Nothing
 
+# Check headers
+print(response.headers)
 #... Nothing
