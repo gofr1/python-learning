@@ -24,3 +24,10 @@ print(response.status_code)
 
 #with open(f'{pic_name}', 'wb') as fout:
 #    fout.write(response.content)
+
+# Check cookies
+session = requests.Session()
+response = session.get(url, auth = HTTPBasicAuth('butter', 'fly'))
+print(session.cookies.get_dict())
+
+#... Nothing
