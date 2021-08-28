@@ -8,8 +8,10 @@ for link in links:
     print(link)
     name = f'name{i}.ext'
     file = urllib.request.urlopen(link)
+    print(f'Processing: {link.strip()}...')
     with open(name,'wb') as output:
-        output.write(file.read())
+        _ = output.write(file.read())
+    print(f'File: {name} is saved!')
     i+=1
 
 links.close()
