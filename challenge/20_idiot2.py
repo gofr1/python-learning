@@ -34,3 +34,5 @@ print(session.cookies.get_dict())
 # Check headers
 print(response.headers)
 #... Nothing
+
+# I guess there is a problem with an unreal.jpg, let's wait for an answers
