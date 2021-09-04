@@ -27,12 +27,20 @@ print(response.status_code)
 
 # Check cookies
 session = requests.Session()
-response = session.get(url, auth = HTTPBasicAuth('butter', 'fly'))
+response = session.get(f'{standard_url}{pic_name}', auth = HTTPBasicAuth('butter', 'fly'))
 print(session.cookies.get_dict())
 #... Nothing
 
 # Check headers
 print(response.headers)
-#... Nothing
+#* {
+#*     'Content-Type': 'image/jpeg', 
+#*     'Content-Range': 'bytes 0-30202/2123456789', 
+#*     'Content-Length': '30203', 
+#*     'Date': 'Sat, 04 Sep 2021 17:01:40 GMT', 
+#*     'Server': 'lighttpd/1.4.55'
+#* }
 
-# I guess there is a problem with an unreal.jpg, let's wait for an answers
+# The problem with picture is fixed!
+# Hmm... we got 'Content-Range': 'bytes 0-30202/2123456789'
+# Let's investigate further
