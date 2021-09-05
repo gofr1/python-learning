@@ -71,25 +71,25 @@ with open(f'bin2.txt', 'wb') as fout:
     fout.write(response.content)
 #* we can go on in this way for really long time
 
+# Now we can write a loop to get all the text from content ranges:
 import re
 
 next_range = '30203-30236'
-# Now we can write a loop to get all the text from content ranges:
 while True:
     headers = {"Range": f"bytes={next_range}"}
     response = requests.get(f'{standard_url}{pic_name}', auth = HTTPBasicAuth('butter', 'fly'),headers=headers)
     bytesRegex = re.compile(r'[0-9]{1,8}-[0-9]{1,8}')
-    print(response.headers)
-    print(response.content)
+    overallRegex = re.compile(r'[0-9]{10}')
     try:
         current_range = bytesRegex.search(response.headers['Content-Range']).group()
+        overall_range = overallRegex.search(response.headers['Content-Range']).group()
     except KeyError:
         print('no more ranges\n')
         break
     else:
-        next_range = f'{(int(current_range.split("-")[1])+1)}-2123456789'
+        next_range = f'{(int(current_range.split("-")[1])+1)}-{overall_range}'
         print(response.headers)
-        print(response.content)
+        print(str(response.content.decode('utf8')).strip())
 
 #* b"Why don't you respect my privacy?\n"
 #* b'we can go on in this way for really long time.\n'
@@ -99,7 +99,8 @@ while True:
 #* no more ranges
 
 # maybe it's "invader"?
-response = requests.get(f'{standard_url}invader.html', auth = HTTPBasicAuth('butter', 'fly'))
+invader = 'invader.html'
+response = requests.get(f'{standard_url}{invader}', auth = HTTPBasicAuth('butter', 'fly'))
 print(response.headers)
 #* {
 #*     'Content-Type': 'text/html', 
@@ -112,3 +113,21 @@ print(response.headers)
 #* }
 print(response.content)
 #* Yes! that's you!
+
+# Let's try to go over the range
+stop_range = int(current_range.split("-")[1])
+above_range = int(overall_range) + stop_range
+
+headers = {"Range": f"bytes={overall_range}-{above_range}"}
+response = requests.get(f'{standard_url}{pic_name}', auth = HTTPBasicAuth('butter', 'fly'),headers=headers)
+print(response.headers)
+print(response.content)
+#* esrever ni emankcin wen ruoy si drowssap eht
+
+content_str = str(response.content.decode('utf8')).strip()[::-1]
+print(content_str)
+#* the password is your new nickname in reverse
+
+# Hmm.. password for what? 
+# And what is a nickname? invader?
+password = 'invader'[::-1]
