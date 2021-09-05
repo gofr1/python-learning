@@ -61,3 +61,54 @@ with open(f'bin.txt', 'wb') as fout:
     fout.write(response.content)
 # In the file you will see this message:
 #* Why don't you respect my privacy?
+
+
+headers = {"Range": "bytes=30347-30883"}
+response = requests.get(f'{standard_url}{pic_name}', auth = HTTPBasicAuth('butter', 'fly'),headers=headers)
+print(response.headers)
+
+with open(f'bin2.txt', 'wb') as fout:
+    fout.write(response.content)
+#* we can go on in this way for really long time
+
+import re
+
+next_range = '30203-30236'
+# Now we can write a loop to get all the text from content ranges:
+while True:
+    headers = {"Range": f"bytes={next_range}"}
+    response = requests.get(f'{standard_url}{pic_name}', auth = HTTPBasicAuth('butter', 'fly'),headers=headers)
+    bytesRegex = re.compile(r'[0-9]{1,8}-[0-9]{1,8}')
+    print(response.headers)
+    print(response.content)
+    try:
+        current_range = bytesRegex.search(response.headers['Content-Range']).group()
+    except KeyError:
+        print('no more ranges\n')
+        break
+    else:
+        next_range = f'{(int(current_range.split("-")[1])+1)}-2123456789'
+        print(response.headers)
+        print(response.content)
+
+#* b"Why don't you respect my privacy?\n"
+#* b'we can go on in this way for really long time.\n'
+#* b'stop this!\n'
+#* b'invader! invader!\n'
+#* b'ok, invader. you are inside now. \n'
+#* no more ranges
+
+# maybe it's "invader"?
+response = requests.get(f'{standard_url}invader.html', auth = HTTPBasicAuth('butter', 'fly'))
+print(response.headers)
+#* {
+#*     'Content-Type': 'text/html', 
+#*     'Accept-Ranges': 'bytes', 
+#*     'ETag': '"522821741"', 
+#*     'Last-Modified': 'Sat, 12 Mar 2016 19:38:45 GMT', 
+#*     'Content-Length': '17', 
+#*     'Date': 'Sun, 05 Sep 2021 08:38:36 GMT', 
+#*     'Server': 'lighttpd/1.4.55'
+#* }
+print(response.content)
+#* Yes! that's you!
