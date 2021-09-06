@@ -45,33 +45,6 @@ print(response.headers)
 # Hmm... we got 'Content-Range': 'bytes 0-30202/2123456789'
 # Let's investigate further
 
-headers = {"Range": "bytes=30203-30236"}
-response = requests.get(f'{standard_url}{pic_name}', auth = HTTPBasicAuth('butter', 'fly'),headers=headers)
-print(response.headers)
-#* {
-#*     'Content-Type': 'application/octet-stream', 
-#*     'Content-Transfer-Encoding': 'binary', 
-#*     'Content-Range': 'bytes 30203-30236/2123456789', 
-#*     'Content-Length': '34', 
-#*     'Date': 'Sun, 05 Sep 2021 07:54:47 GMT', 
-#*     'Server': 'lighttpd/1.4.55'
-#* }
-
-with open(f'bin.txt', 'wb') as fout:
-    fout.write(response.content)
-# In the file you will see this message:
-#* Why don't you respect my privacy?
-
-
-headers = {"Range": "bytes=30347-30883"}
-response = requests.get(f'{standard_url}{pic_name}', auth = HTTPBasicAuth('butter', 'fly'),headers=headers)
-print(response.headers)
-
-with open(f'bin2.txt', 'wb') as fout:
-    fout.write(response.content)
-#* we can go on in this way for really long time
-
-# Now we can write a loop to get all the text from content ranges:
 import re
 
 next_range = '30203-30236'
@@ -83,11 +56,14 @@ while True:
     try:
         current_range = bytesRegex.search(response.headers['Content-Range']).group()
         overall_range = overallRegex.search(response.headers['Content-Range']).group()
+        content_length = int(response.headers['Content-Length'])
     except KeyError:
         print('no more ranges\n')
         break
     else:
-        next_range = f'{(int(current_range.split("-")[1])+1)}-{overall_range}'
+        range_from = (int(current_range.split("-")[1])+1)
+        range_to = range_from + content_length
+        next_range = f'{range_from}-{range_to}'
         print(response.headers)
         print(str(response.content.decode('utf8')).strip())
 
@@ -114,11 +90,9 @@ print(response.headers)
 print(response.content)
 #* Yes! that's you!
 
-# Let's try to go over the range
-stop_range = int(current_range.split("-")[1])
-above_range = int(overall_range) + stop_range
 
-headers = {"Range": f"bytes={overall_range}-{above_range}"}
+# Let's try to go over the other side of the range
+headers = {"Range": f"bytes=2123456744-2123456788"}
 response = requests.get(f'{standard_url}{pic_name}', auth = HTTPBasicAuth('butter', 'fly'),headers=headers)
 print(response.headers)
 print(response.content)
@@ -131,3 +105,17 @@ print(content_str)
 # Hmm.. password for what? 
 # And what is a nickname? invader?
 password = 'invader'[::-1]
+
+# And password for what? Go further
+headers = {"Range": f"bytes=2123456739-2123456743"}
+response = requests.get(f'{standard_url}{pic_name}', auth = HTTPBasicAuth('butter', 'fly'),headers=headers)
+print(response.headers)
+print(response.content)
+#* and it is hiding at 1152983631.
+
+headers = {"Range": f"bytes=1152983631-0"}
+response = requests.get(f'{standard_url}{pic_name}', auth = HTTPBasicAuth('butter', 'fly'),headers=headers)
+print(response.headers)
+
+with open('bin','wb') as fout:
+    fout.write(response.content)
