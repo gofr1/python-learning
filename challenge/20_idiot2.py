@@ -119,3 +119,34 @@ print(response.headers)
 
 with open('bin','wb') as fout:
     fout.write(response.content)
+
+
+# Hm... Let's check the file type
+# pip3 install python-magic
+import magic
+# printing the human readable type of the file
+
+print(magic.from_file('bin'))
+#* Zip archive data, at least v2.0 to extract
+
+# rename file
+import os
+os.rename('bin','bin.zip')
+
+# Let's work with zip
+from zipfile import ZipFile, ZipInfo
+
+with ZipFile('bin.zip', 'r') as zout:
+    zout.namelist()
+#* ['readme.txt', 'package.pack']
+
+with ZipFile('bin.zip', 'r') as zout:
+    print(zout.read('readme.txt', pwd=bytes(password.encode())).decode('utf8'))
+
+#* Yes! This is really level 21 in here. 
+#* And yes, After you solve it, you'll be in level 22!
+#* 
+#* Now for the level:
+#* 
+#* * We used to play this game when we were kids
+#* * When I had no idea what to do, I looked backwards.
