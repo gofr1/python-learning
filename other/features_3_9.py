@@ -57,3 +57,17 @@ print(dt)
 
 print(dt.tzname())
 #* PST
+
+# HTTP Status Code Registry. HTTP status codes are available in the http standard library
+from http import HTTPStatus
+HTTPStatus.OK
+#* <HTTPStatus.OK: 200>
+
+HTTPStatus.OK.description
+#* 'Request fulfilled, document follows'
+
+HTTPStatus(404)
+#* <HTTPStatus.NOT_FOUND: 404>
+
+HTTPStatus(404).phrase
+#* 'Not Found'
