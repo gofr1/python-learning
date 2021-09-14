@@ -38,3 +38,36 @@ def greet_all(names: list[str]) -> None: # we can declare that we need list of s
         print("Hello", name)
 
 greet_all(['John', 'Gwen'])
+
+# The zoneinfo module brings support for the IANA time zone database to the standard library.
+from zoneinfo import ZoneInfo
+from datetime import datetime, timedelta
+
+# Daylight saving time
+dt = datetime(2020, 10, 31, 12, tzinfo=ZoneInfo("America/Los_Angeles"))
+print(dt)
+#* 2020-10-31 12:00:00-07:00
+dt.tzname()
+#* 'PDT'
+
+# Standard time
+dt += timedelta(days=7)
+print(dt)
+#* 2020-11-07 12:00:00-08:00
+
+print(dt.tzname())
+#* PST
+
+# HTTP Status Code Registry. HTTP status codes are available in the http standard library
+from http import HTTPStatus
+HTTPStatus.OK
+#* <HTTPStatus.OK: 200>
+
+HTTPStatus.OK.description
+#* 'Request fulfilled, document follows'
+
+HTTPStatus(404)
+#* <HTTPStatus.NOT_FOUND: 404>
+
+HTTPStatus(404).phrase
+#* 'Not Found'
