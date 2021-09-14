@@ -71,3 +71,15 @@ HTTPStatus(404)
 
 HTTPStatus(404).phrase
 #* 'Not Found'
+
+# New math functions
+import math
+# find greatest common divisor
+# now no need to nest, can be applied on more than 2 numbers
+math.gcd(80, 64, 152) 
+#* 8
+
+#new fuction to find
+# Least common multiple
+math.lcm(4, 8, 5)
+#* 40
