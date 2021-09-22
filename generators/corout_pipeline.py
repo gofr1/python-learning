@@ -32,6 +32,6 @@ if __name__ == '__main__':
     fnames = file_write('first_names.txt')
     lnames = file_write('last_names.txt')
     router = router()
-    for name in open("names.txt"):
+    for name in open("generators/names.txt"):
         router.send(name)
     router.close()
