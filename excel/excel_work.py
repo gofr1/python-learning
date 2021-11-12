@@ -6,12 +6,13 @@ from openpyxl.utils import get_column_letter, column_index_from_string
 from openpyxl.styles import Font
 
 # open file
-wb = openpyxl.load_workbook('example.xlsx')
+wb = openpyxl.load_workbook('excel/example.xlsx')
 type(wb)
 #* <class 'openpyxl.workbook.workbook.Workbook'>
 
 # get sheet's names
-wb.get_sheet_names()
+# wb.get_sheet_name() is depricated
+wb.sheetnames
 #* ['Sheet1', 'Sheet2', 'Sheet3']
 
 # select one sheet to work with
